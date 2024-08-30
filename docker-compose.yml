@@ -1,0 +1,19 @@
+services:
+  srback:
+    image: backend:0.0.1
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8085:8085"
+
+
+  srfront:
+    image: frontend:0.0.1
+    build: .
+    restart: always
+    ports:
+      - '3000:3000'
+    volumes:
+      - /appf/node_modules
+      - ./frontend:/appf
