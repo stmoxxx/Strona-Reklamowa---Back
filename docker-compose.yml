@@ -6,14 +6,16 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8085:8085"
+    environment:
+      - SERVER_PORT= 8085
 
 
   srfront:
     image: frontend:0.0.1
     build: .
-    restart: always
+    restart: unless-stopped
     ports:
       - '3000:3000'
     volumes:
-      - /appf/node_modules
-      - ./frontend:/appf
+      - /appfront/node_modules
+      - ./frontend:/appfront
